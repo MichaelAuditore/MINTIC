@@ -17,14 +17,14 @@ public class Message implements Serializable {
     private String messageText;
 
     @ManyToOne
-    @JoinColumn(name = "messageId")
-    @JsonIgnoreProperties({ "messages", "reservations" })
-    private Client client;
-
-    @ManyToOne
     @JoinColumn(name = "computerId")
     @JsonIgnoreProperties({ "messages", "reservations" })
     private Computer computer;
+
+    @ManyToOne
+    @JoinColumn(name = "messageId")
+    @JsonIgnoreProperties({ "messages", "reservations" })
+    private Client client;
 
     public Integer getIdMessage() {
         return idMessage;
