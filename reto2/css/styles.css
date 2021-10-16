@@ -1,0 +1,12 @@
+.btn-group {
+  width: 100% !important;
+}
+
+.main {
+    width: 60%;
+}
+
+.canvas {
+    margin-top: 10%;
+    width: 40%;
+}
