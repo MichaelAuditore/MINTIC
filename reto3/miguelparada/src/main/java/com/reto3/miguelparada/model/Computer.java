@@ -31,11 +31,11 @@ public class Computer implements Serializable {
     private Category category;
 
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "computer", targetEntity = Message.class)
-    @JsonIgnoreProperties(value = { "computer", "reservations" })
+    @JsonIgnoreProperties(value = { "computer", "reservations", "client" })
     private List<Message> messages;
 
     @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "computer", targetEntity = Reservation.class)
-    @JsonIgnoreProperties("computer")
+    @JsonIgnoreProperties({ "computer", "client", "messages" })
     private List<Reservation> reservations;
 
     public List<Reservation> getReservations() {
