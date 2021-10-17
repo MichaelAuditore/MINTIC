@@ -35,7 +35,7 @@ public class Computer implements Serializable {
     private List<Message> messages;
 
     @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "computer", targetEntity = Reservation.class)
-    @JsonIgnoreProperties({ "computer", "client", "messages" })
+    @JsonIgnoreProperties({ "computer", "client" })
     private List<Reservation> reservations;
 
     public List<Reservation> getReservations() {
