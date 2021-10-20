@@ -18,6 +18,11 @@ public class ClientService {
         return clientRepository.getAll();
     }
 
+    public Client getClientById(int id) {
+        return clientRepository.getById(id);
+    }
+
+
     public Client saveClient(Client client) {
         if (client.getIdClient() == null) {
             return clientRepository.saveClient(client);
