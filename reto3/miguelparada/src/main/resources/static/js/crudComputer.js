@@ -10,10 +10,12 @@ async function createComputer(event) {
     alert("los valores no pueden ser nulos");
     return;
   }
+
   const data = {
     brand: $("#brand").val(),
-    year: $("#year").val(),
+    year: parseInt($("#year").val()),
     category: { id: $("#categorySelect").val() },
+    description: $("#description").val(),
     name: $("#name").val(),
   };
 
@@ -53,6 +55,7 @@ async function updateComputer(event) {
     $("#updatedBrand").val() == "" ||
     $("#updatedModel").val() == "" ||
     $("#updatedCategory").val() == "" ||
+    $("#updatedDescription").val() == "" ||
     $("#updatedName").val() == ""
   ) {
     alert("los valores no pueden ser nulos");
@@ -61,9 +64,10 @@ async function updateComputer(event) {
   const data = {
     id: event.currentTarget[4].id,
     brand: $("#updatedBrand").val(),
-    model: $("#updatedModel").val(),
-    category_id: $("#updatedCategory").val(),
+    year: $("#updatedYear").val(),
+    category: { id: $("#updatedCategory").val() },
     name: $("#updatedName").val(),
+    description: $("#updatedDescription").val(),
   };
 
   const requestObject = {

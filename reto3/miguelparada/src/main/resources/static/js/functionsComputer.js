@@ -16,7 +16,7 @@ function createFormComputer() {
       </div>
       <div class="form-group">
         <label for="year" class="form-label">Año</label>
-        <input type="number" class="form-control" id="year" placeholder="1">
+        <input type="text" pattern="[0-9]{4}" minlength=4 class="form-control" id="year" placeholder="YYYY">
       </div>
       <div class="form-group">
         <label for="categorySelect" class="form-label">Categoría</label>
@@ -26,6 +26,10 @@ function createFormComputer() {
         <label for="name" class="form-label">Nombre</label>
         <input type="text" maxlength="45" class="form-control" id="name" placeholder="Thinkpad">
       </div>
+      <div class="form-group">
+        <label for="description" class="form-label">Descripción</label>
+        <textarea maxlength="250" rows="2" class="form-control" name="description" id="description"></textarea>
+      </div>
       <button type="submit" class="btn btn-success">Crear</button>
     </form>`;
   drawContent(computerForm);
@@ -33,17 +37,23 @@ function createFormComputer() {
   $(".computerForm").on("submit", createComputer);
 }
 
-function drawCategorySelect(data) {
+function drawCategorySelect(data = null) {
   let categorySelect = $("#categorySelect");
   categorySelect.html("");
 
-  categorySelect.append("<option value=''>Seleccione una categoría</option>")
-  data.forEach((category) => {
-    let dato = `
-      <option value="${category.id}">${category.name}</option>
-    `;
-    categorySelect.append(dato);
-  });
+  if (data.length !== 0) {
+    categorySelect.append("<option value=''>Seleccione una categoría</option>");
+    data.forEach((category) => {
+      let dato = `
+        <option value="${category.id}">${category.name}</option>
+      `;
+      categorySelect.append(dato);
+    });
+  } else {
+    categorySelect.append(
+      "<option value=''>Es necesario crear una categoría</option>"
+    );
+  }
 }
 
 function listComputers() {
@@ -51,11 +61,11 @@ function listComputers() {
     <table class="table table-dark">
         <thead>
             <tr>
-                <th scope="col">#</th>
                 <th scope="col">Marca</th>
                 <th scope="col">Año</th>
                 <th scope="col">Categoría</th>
                 <th scope="col">Nombre</th>
+                <th scope="col">Descripción</th>
             </tr>
         </thead>
         <tbody class="computersBody"></tbody>
@@ -77,11 +87,11 @@ function drawComputers(data) {
     console.log(computer);
     let dato = `
       <tr>
-        <td>${computer.id}</td>
         <td>${computer.brand}</td>
         <td>${computer.year}</td>
         <td>${computer.category?.name}</td>
         <td>${computer.name}</td>
+        <td>${computer.description}</td>
       </tr>
     `;
     {
@@ -115,8 +125,8 @@ async function drawEdit(event) {
         <input type="text" class="form-control" id="updatedBrand" value="${dataComputer.brand}">
       </div>
       <div class="form-group">
-        <label for="updatedModel" class="form-label">Modelo</label>
-        <input type="number" class="form-control" id="updatedModel" value="${dataComputer.model}">
+        <label for="updatedYear" class="form-label">Año</label>
+        <input type="text" pattern="[0-9]{4}" minlength=4 class="form-control" id="updatedYear" placeholder="YYYY">
       </div>
       <div class="form-group">
         <label for="updatedCategory" class="form-label">Category Id</label>
@@ -125,6 +135,10 @@ async function drawEdit(event) {
       <div class="form-group">
         <label for="updatedName" class="form-label">Nombre</label>
         <input type="text" class="form-control" id="updatedName" value="${dataComputer.name}">
+      </div>
+      <div class="form-group">
+        <label for="updatedDescription" class="form-label">Descripción</label>
+        <textarea maxlength="250" rows="2" class="form-control" name="updatedDescription" id="updatedDescription"></textarea>
       </div>
       <button id="${dataComputer.id}" type="submit" class="btn btn-success">Actualizar</button>
     </form>`;

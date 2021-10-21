@@ -12,11 +12,11 @@ function createFormClient() {
     <form class="clientForm">
       <div class="form-group">
         <label for="name" class="form-label">Nombre</label>
-        <input type="text" class="form-control" id="name" placeholder="Miguel">
+        <input type="text" maxlength="250" class="form-control" id="name" placeholder="Miguel">
       </div>
       <div class="form-group">
         <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" placeholder="name@example.com">
+        <input type="email" maxlength="45" pattern="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3}" class="form-control" id="email" placeholder="name@example.com">
       </div>
       <div class="form-group">
         <label for="password" class="form-label">Contraseña</label>
@@ -37,12 +37,11 @@ function listClients() {
     <table class="table table-dark">
         <thead>
             <tr>
-                <th scope="col">#</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Email</th>
-                <th scope="col">Contraseña</th>
                 <th scope="col">Edad</th>
-                <th scope="col">Acciones</th>
+                <th scope="col">Mensajes</th>
+                <th scope="col">Reservaciones</th>
             </tr>
         </thead>
         <tbody class="clientsBody"></tbody>
@@ -63,11 +62,11 @@ function drawClients(data) {
   clients.forEach((client) => {
     let dato = `
       <tr>
-        <td>${client.idClient}</td>
         <td>${client.name}</td>
         <td>${client.email}</td>
-        <td>${client.password}</td>
         <td>${client.age}</td>
+        <td id="messagesList"></td>
+        <td id="reservationList"></td>
       </tr>
     `;
     {
@@ -77,8 +76,36 @@ function drawClients(data) {
         </td> */
     }
     clientsBody.append(dato);
+    drawClientMessageAndReservations(client);
     /* addEvents(client); */
   });
+}
+
+function drawClientMessageAndReservations(client) {
+  let messagesList = $("#messagesList");
+  let reservationsList = $("#reservationList");
+  if (client.messages.length > 0) {
+    client.messages.forEach((message) => {
+      messagesList.append(message.messageText);
+    });
+  } else {
+    messagesList.append("No hay mensajes asociados");
+  }
+
+  if (client.reservations.length > 0) {
+    client.reservations.forEach((reservation) => {
+      console.log(reservation);
+      reservationsList.append(
+        client.name +
+          "<br/>" +
+          reservation.computer.brand +
+          " " +
+          reservation.computer.name
+      );
+    });
+  } else {
+    reservationsList.append("No hay reservas asociados");
+  }
 }
 
 function addEvents(client) {

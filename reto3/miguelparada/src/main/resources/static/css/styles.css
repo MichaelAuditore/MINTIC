@@ -8,9 +8,14 @@
 
 .canvas {
     margin-top: 10%;
-    width: 40%;
+    width: 100%;
+    max-width: 1000px;
 }
 
 input:invalid {
   border: 2px dashed red;
+}
+
+th, td {
+  text-align: center;
 }

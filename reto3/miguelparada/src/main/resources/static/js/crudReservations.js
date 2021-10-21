@@ -1,18 +1,20 @@
-async function createMessage(event) {
+async function createReservation(event) {
   event.preventDefault();
 
   if (
-    $("#message").val() == "" ||
-    $("#computerSelect").val() == "" ||
-    $("#clientSelect").val() == ""
+    $("#dateSelect").val() == "" ||
+    $("#devolutionDateSelect").val() == "" ||
+    $("#clientSelect").val() == "" ||
+    $("#computerSelect").val() == ""
   ) {
     alert("los valores no pueden ser nulos");
     return;
   }
   const data = {
-    computer: { id: $("#computerSelect").val() },
-    messageText: $("#message").val(),
-    client: { idClient: $("#clientSelect").val() },
+    startDate: $("#dateSelect").val(),
+    devolutionDate: $("#devolutionDateSelect").val(),
+    computer: { id: $("#clientSelect").val() },
+    client: { idClient: $("#computerSelect").val() },
   };
 
   const requestObject = {
@@ -21,7 +23,7 @@ async function createMessage(event) {
     headers: { "content-type": "application/json" },
   };
 
-  await fetch(saveDataURL("message"), requestObject).then(
+  await fetch(saveDataURL("reservation"), requestObject).then(
     alert("Se ha creado exitósamente el registro")
   );
 }
@@ -38,24 +40,24 @@ async function getClientOptions() {
     .then((response) => drawClientOptions(response));
 }
 
-async function getMessages() {
-  await fetch(getDataURL("message"))
+async function getReservations() {
+  await fetch(getDataURL("reservation"))
     .then((response) => response.json())
-    .then((response) => drawMessages(response));
+    .then((response) => drawReservations(response));
 }
 
-async function getMessage(id) {
-  return await fetch(`${urlRequests["message"]}/${id}`)
+async function getReservation(id) {
+  return await fetch(`${urlRequests["reservation"]}/${id}`)
     .then((response) => response.json())
     .then((response) => response.items[0]);
 }
 
-async function updateMessage(event) {
+async function updateReservation(event) {
   console.log(event);
   event.preventDefault();
 
   if (
-    $("#updatedMessage").val() == "" ||
+    $("#updatedReservation").val() == "" ||
     $("#updatedComputerSelect").val() == ""
   ) {
     alert("los valores no pueden ser nulos");
@@ -65,7 +67,7 @@ async function updateMessage(event) {
   const data = {
     id: event.currentTarget[1].id,
     computer: $("#updatedComputerSelect").val(),
-    messagetext: $("#updatedMessage").val(),
+    reservationtext: $("#updatedReservation").val(),
   };
 
   const requestObject = {
@@ -74,13 +76,13 @@ async function updateMessage(event) {
     headers: { "content-type": "application/json" },
   };
 
-  await fetch(updateDataURL("message"), requestObject).then(
+  await fetch(updateDataURL("reservation"), requestObject).then(
     alert("Se ha actualizado exitósamente el registro")
   );
-  getMessages();
+  getReservations();
 }
 
-async function deleteMessage(event) {
+async function deleteReservation(event) {
   let id = parseInt(event.srcElement.id.split("-")[1]);
   const requestObject = {
     method: "DELETE",
@@ -91,6 +93,6 @@ async function deleteMessage(event) {
     },
   };
 
-  await fetch(deleteDataURL("message"), requestObject);
-  getMessages();
+  await fetch(deleteDataURL("reservation"), requestObject);
+  getReservations();
 }

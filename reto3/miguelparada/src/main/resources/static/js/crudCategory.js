@@ -28,6 +28,12 @@ async function getCategorys() {
     .then((response) => drawCategorys(response));
 }
 
+async function getComputersCategories() {
+  await fetch(getDataURL("computer"))
+    .then((response) => response.json())
+    .then((response) => drawComputersCategories(response));
+}
+
 async function getCategory(id) {
   return await fetch(`${urlRequests["category"]}/${id}`)
     .then((response) => response.json())

@@ -12,11 +12,11 @@ function createFormCategory() {
     <form class="categoryForm">
       <div class="form-group">
         <label for="name" class="form-label">Nombre</label>
-        <input type="text" class="form-control" id="name" placeholder="Nombre de categoría">
+        <input type="text" class="form-control" maxlength="45" id="name" placeholder="Nombre de categoría">
       </div>
       <div class="form-group">
         <label for="description" class="form-label">Descripción</label>
-        <input type="text" class="form-control" id="description" placeholder="Escribe una descripción">
+        <textarea maxlength="250" class="form-control" id="description" placeholder="Escribe una descripción"></textarea>
       </div>
       <button type="submit" class="btn btn-success">Crear</button>
     </form>`;
@@ -29,9 +29,9 @@ function listCategorys() {
     <table class="table table-dark">
         <thead>
             <tr>
-                <th scope="col">#</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Descripción</th>
+                <th scope="col">Computadores Relacionados</th>
             </tr>
         </thead>
         <tbody class="categorysBody"></tbody>
@@ -52,9 +52,9 @@ function drawCategorys(data) {
   categorys.forEach((category) => {
     let dato = `
       <tr>
-        <td>${category.id}</td>
         <td>${category.name}</td>
         <td>${category.description}</td>
+        <td id="computersCategory"></td>
       </tr>
     `;
     {
@@ -64,8 +64,23 @@ function drawCategorys(data) {
         </td> */
     }
     categorysBody.append(dato);
+    getComputersCategories();
     /* addEvents(category); */
   });
+}
+
+function drawComputersCategories(data) {
+  let computersCategory = $("#computersCategory");
+
+  if (data.length > 0) {
+    data.forEach((computer) => {
+      computersCategory.append(computer.brand + " " + computer.name);
+    });
+  } else {
+    computersCategory.append(
+      "No hay computadores relacionados a esta categoría"
+    );
+  }
 }
 
 function addEvents(category) {
