@@ -1,0 +1,40 @@
+.btn-group {
+  width: 100% !important;
+}
+
+.main {
+  width: 60%;
+}
+
+.canvas {
+  margin-top: 5%;
+  width: 100%;
+  max-width: 1000px;
+  text-align: center;
+}
+
+input:invalid {
+  border: 2px dashed red;
+}
+
+th,
+td {
+  text-align: center;
+}
+
+.reservationForm {
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: flex-end;
+  align-self: baseline;
+}
+
+.completedReservations,
+.cancelledReservations {
+  font-weight: bolder;
+}
+
+.drawReservations {
+  margin-top: 5%;
+}
