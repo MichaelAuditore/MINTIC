@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Productos</title>
+    <!-- Styles Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+      />
+    <link rel="stylesheet" href="css/menu.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+    <link rel="stylesheet" href="css/form.css" />
+    <link rel="stylesheet" href="css/card.css" />
+    <link rel="stylesheet" href="css/profile.css" />
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="dashboard.html">
+          <img src="./assets/logo.png" alt="ZorrilloLogo" width="50px" />
+          <span class="navbar-brand-dark mb-0 h6">Zorrillo Fragance</span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li>
+              <a class="nav-link product" href="products.html">Productos</a>
+            </li>
+            <li>
+              <a class="nav-link user" href="users.html">Usuarios</a>
+            </li>
+            <li>
+              <a class="nav-link" href="orders.html">Pedidos</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <img src="./assets/usericon.png" width="30px" alt="userIcon" />
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="profile.html">Perfil</a></li>
+                <li><a class="dropdown-item" href="dashboard.html">Home</a></li>
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#" onclick="closeSession()">Cerrar
+                    sesión</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container text-center">
+      <h2 class="mt-5">Usuarios</h2>
+      <div class="mt-5">
+        <h4>Acciones</h4>
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#gridSystemModal">
+          Crear usuario
+        </button>
+      </div>
+      <div class="mt-5 inventory table-responsive"></div>
+    </div>
+
+    <!-- Modal Create Product -->
+    <div
+      class="modal fade show"
+      id="gridSystemModal"
+      tabindex="-1"
+      aria-labelledby="gridModalLabel"
+      aria-modal="true"
+      role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="gridModalLabel">Crear Usuarios</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"></button>
+          </div>
+          <div class="modal-body form">
+            <div class="container-fluid tab-content">
+              <div class="tab-body active">
+                <div class="form-element">
+                  <input id="identification" type="text" placeholder="Identificación" />
+                </div>
+                <div class="form-element">
+                  <input id="username" type="text" placeholder="Nombre" />
+                </div>
+                <div class="form-element">
+                  <input id="address" type="text" placeholder="Dirección">
+                </div>
+                <div class="form-element">
+                  <input
+                    type="text"
+                    name="cellPhone"
+                    id="cellPhone"
+                    placeholder="Celular"
+                    />
+                </div>
+                <div class="form-element">
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Email"
+                    />
+                </div>
+                <div class="form-element">
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="Contraseña"
+                    />
+                </div>
+                <div class="form-element">
+                  <input
+                    type="text"
+                    name="zone"
+                    id="zone"
+                    placeholder="Zona"
+                    />
+                </div>
+                <div class="form-element">
+                  <input
+                    type="text"
+                    name="typeRol"
+                    id="typeRol"
+                    placeholder="Rol"
+                    />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal">
+              Cerrar
+            </button>
+            <button
+              type="button"
+              onclick="createUser()"
+              class="btn btn-primary"
+              data-bs-dismiss="modal">
+              Crear Usuario
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Jquery minified -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+      integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="crossorigin="anonymous"></script>
+    <!-- Bootstrap JS with popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"></script>
+    <script src="./js/utils/requests.js"></script>
+    <script src="./js/utils/localStorage.js"></script>
+    <script src="./js/signup/actions.js"></script>
+    <script src="./js/users/actions.js"></script>
+  </body>
+</html>

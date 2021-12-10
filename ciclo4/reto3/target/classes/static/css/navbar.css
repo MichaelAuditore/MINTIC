@@ -1,0 +1,18 @@
+.navbar > .container-fluid {
+  justify-content: flex-start !important;
+}
+
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto;
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .dropdown-menu[data-bs-popper] {
+    top: 100%;
+    left: -120px;
+    margin-top: 0.125rem;
+  }
+}
