@@ -1,12 +1,11 @@
 package com.miguelparada.retocuatro.repository.crud;
 
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.BasicQuery;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
+import org.springframework.data.repository.query.Param;
 
+import java.sql.Date;
 import java.util.List;
-import java.util.Optional;
 
 import com.miguelparada.retocuatro.model.Order;
 
@@ -17,4 +16,13 @@ import com.miguelparada.retocuatro.model.Order;
 public interface OrderCrudRepository extends MongoRepository<Order, Integer> {
     @Query("{ 'salesMan.zone' :  ?0}")
     List<Order> findBySalesManZone(String zone);
+
+    @Query("{ 'salesMan.id': ?0  }")
+    List<Order> findBySalesMan(int salesMan);
+
+    @Query("{ 'status': ?0, 'salesMan.id': ?1  }")
+    List<Order> getOrdersByStateAndSalesMan(String status, int idSalesman);
+
+    @Query("{ 'registerDay': { $eq: ?0 } }, 'salesMan.id': ?1  }")
+    List<Order> getOrdersByRegisterDateAndSalesMan(Date date, int idSalesman);
 }

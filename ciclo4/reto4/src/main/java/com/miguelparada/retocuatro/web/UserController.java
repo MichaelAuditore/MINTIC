@@ -70,4 +70,9 @@ public class UserController {
     public boolean emailExist(@PathVariable("email") String email) {
         return userService.emailExist(email);
     }
+
+    @GetMapping("/birthday/{monthBirthDay}")
+    public List<User> getUserByMonthBirthDay(@PathVariable("monthBirthDay") String monthBirthDay) {
+        return userService.getUserByMonthBirthDay(monthBirthDay);
+    }
 }

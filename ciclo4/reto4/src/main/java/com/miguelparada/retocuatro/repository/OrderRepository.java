@@ -1,5 +1,6 @@
 package com.miguelparada.retocuatro.repository;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,11 +19,10 @@ public class OrderRepository {
     @Autowired
     private OrderCrudRepository orderCrudRepository;
 
-
     public int getLastOrderId() {
         int lastId = 0;
         List<Order> orders = getAll();
-        for (Order order: orders) {
+        for (Order order : orders) {
             lastId = order.getId();
         }
         return lastId;
@@ -38,6 +38,18 @@ public class OrderRepository {
 
     public List<Order> getOrderBySalesManZone(String zone) {
         return orderCrudRepository.findBySalesManZone(zone);
+    }
+
+    public List<Order> getOrderBySalesMan(int idSalesman) {
+        return orderCrudRepository.findBySalesMan(idSalesman);
+    }
+
+    public List<Order> getOrdersByStateAndSalesMan(String status, int idSalesman) {
+        return orderCrudRepository.getOrdersByStateAndSalesMan(status, idSalesman);
+    }
+
+    public List<Order> getOrdersByRegisterDateAndSalesMan(Date date, int idSalesman) {
+        return orderCrudRepository.getOrdersByRegisterDateAndSalesMan(date, idSalesman);
     }
 
     public Order create(Order order) {

@@ -1,5 +1,6 @@
 package com.miguelparada.retocuatro.service;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +29,18 @@ public class OrderService {
 
     public List<Order> getOrderBySalesManZone(String zone) {
         return orderRepository.getOrderBySalesManZone(zone);
+    }
+
+    public List<Order> getOrderBySalesMan(int idSalesman) {
+        return orderRepository.getOrderBySalesMan(idSalesman);
+    }
+
+    public List<Order> getOrdersByStateAndSalesMan(String status, int idSalesman) {
+        return orderRepository.getOrdersByStateAndSalesMan(status, idSalesman);
+    }
+
+    public List<Order> getOrdersByRegisterDateAndSalesMan(Date date, int idSalesman) {
+        return orderRepository.getOrdersByRegisterDateAndSalesMan(date, idSalesman);
     }
 
     public Order create(Order order) {

@@ -60,4 +60,13 @@ public class FraganceController {
         return fraganceService.delete(reference);
     }
 
+    @GetMapping("price/{price}")
+    public List<Fragance> getFragancesByPrice(@PathVariable("price") double price) {
+        return fraganceService.getFragancesByPrice(price);
+    }
+
+    @GetMapping("description/{word}")
+    public List<Fragance> getFragancesByDescription(@PathVariable("word") String word) {
+        return fraganceService.getFragancesByDescription(word);
+    }
 }

@@ -1,5 +1,6 @@
 package com.miguelparada.retocuatro.web;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,6 +46,25 @@ public class OrderController {
     @GetMapping("zona/{ZONE}")
     public List<Order> getOrderBySalesManZone(@PathVariable("ZONE") String zone) {
         return orderService.getOrderBySalesManZone(zone);
+    }
+
+    @GetMapping("salesman/{idSalesman}")
+    public List<Order> getOrderBySalesMan(@PathVariable("idSalesman") int idSalesman) {
+        return orderService.getOrderBySalesMan(idSalesman);
+    }
+
+    @GetMapping("state/{status}/{idSalesman}")
+    public List<Order> getOrdersByStateAndSalesMan(
+            @PathVariable("status") String status,
+            @PathVariable("idSalesman") int idSalesman) {
+        return orderService.getOrdersByStateAndSalesMan(status, idSalesman);
+    }
+
+    @GetMapping("date/{dateString}/{idSalesman}")
+    public List<Order> getOrdersByRegisterDateAndSalesMan(
+            @PathVariable("dateString") Date date,
+            @PathVariable("idSalesman") int idSalesman) {
+        return orderService.getOrdersByRegisterDateAndSalesMan(date, idSalesman);
     }
 
     @PostMapping("/new")

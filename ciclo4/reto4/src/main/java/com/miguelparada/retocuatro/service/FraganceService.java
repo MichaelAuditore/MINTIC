@@ -83,4 +83,11 @@ public class FraganceService {
         return aBoolean;
     }
 
+    public List<Fragance> getFragancesByPrice(double price) {
+        return fraganceRepository.getFragancesByPrice(price);
+    }
+
+    public List<Fragance> getFragancesByDescription(String word) {
+        return fraganceRepository.getFragancesByDescription(word);
+    }
 }

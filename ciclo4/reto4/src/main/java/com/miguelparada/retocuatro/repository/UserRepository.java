@@ -57,4 +57,7 @@ public class UserRepository {
         return lastId;
     }
 
+    public List<User> getUserByMonthBirthDay(String monthBirthDay) {
+        return userCrudRepository.getUserByMonthBirthDay(monthBirthDay);
+    }
 }

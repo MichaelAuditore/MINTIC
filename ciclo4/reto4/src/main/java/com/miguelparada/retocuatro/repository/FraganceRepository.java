@@ -38,4 +38,11 @@ public class FraganceRepository {
         fraganceCrudRepository.delete(fragance);
     }
 
+    public List<Fragance> getFragancesByPrice(double price) {
+        return fraganceCrudRepository.getFragancesByPrice(price);
+    }
+
+    public List<Fragance> getFragancesByDescription(String word) {
+        return fraganceCrudRepository.getFragancesByDescription(word);
+    }
 }
