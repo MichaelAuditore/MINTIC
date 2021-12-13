@@ -1,0 +1,18 @@
+.content {
+  margin: 5rem auto;
+  text-align: center;
+}
+
+.content img {
+  width: 300px;
+}
+
+.form {
+  z-index: -1;
+}
+
+@media (max-width: 992px) {
+  .navbar > .container-fluid {
+    justify-content: space-between;
+  }
+}

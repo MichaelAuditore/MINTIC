@@ -1,0 +1,129 @@
+.navbar > .container-fluid {
+  justify-content: flex-start;
+}
+
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto;
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .dropdown-menu[data-bs-popper] {
+    top: 100%;
+    left: -120px;
+    margin-top: 0.125rem;
+  }
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  background: #ddd;
+  font-family: "Raleway";
+}
+
+.form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  background: #f5f5f5;
+  box-shadow: 5px 5px 10px 5px #ccc;
+}
+.form .tab-header {
+  height: 50px;
+  line-height: 50px;
+}
+.form .tab-header > div {
+  width: 50%;
+  float: left;
+  text-align: center;
+  background: #ddd;
+  color: #555;
+  cursor: pointer;
+}
+.form .tab-header > div.active {
+  background: #f5f5f5;
+  color: #111;
+}
+.form .tab-content {
+  padding: 20px;
+}
+.form .tab-content .form-element {
+  margin: 10px 0px;
+}
+.form .tab-content .form-element input,
+.form .tab-content .form-element textarea,
+.form .tab-content .form-element input,
+.form .tab-content .form-element select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #aaa;
+  font-size: 16px;
+  background: #f5f5f5;
+  border-radius: 5px;
+  outline: none;
+}
+.form .tab-content .form-element input[type="checkbox"] {
+  width: 30px;
+  margin: 8px 0px;
+  margin-left: -5px;
+}
+.form .tab-content .form-element label {
+  color: #111;
+}
+.form .tab-content .form-element button {
+  margin-top: 5px;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  outline: none;
+  background: #00acee;
+  color: #f5f5f5;
+  font-size: 16px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.form .tab-content > div.active {
+  display: block;
+}
+.form .tab-content > div {
+  display: none;
+}
+
+.active {
+  font-weight: 900;
+}
+p[class^="error"] {
+  color: red;
+  padding: 0;
+  margin: 0 10px 0;
+  font-size: 10px;
+}
+
+textarea,
+select {
+  width: 100%;
+  background: #f5f5f5 !important;
+}
+
+.table_content td input {
+  width: 100%;
+}
+
+.updateButton {
+  display: none;
+}
+
+.buttonTag {
+  background: none !important;
+  color: blue !important;
+  text-transform: capitalize !important;
+  text-decoration: underline;
+  margin-top: 0px !important;
+  padding: 0px !important;
+}

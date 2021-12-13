@@ -1,0 +1,31 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch reto4Application",
+            "request": "launch",
+            "mainClass": "com.miguelparada.retocuatro.reto4Application",
+            "projectName": "reto2"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-reto4Application<reto4>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.miguelparada.retocuatro.reto4Application",
+            "projectName": "reto4",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-Reto4Application<reto4>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.miguelparada.retocuatro.Reto4Application",
+            "projectName": "reto4",
+            "args": ""
+        }
+    ]
+}
