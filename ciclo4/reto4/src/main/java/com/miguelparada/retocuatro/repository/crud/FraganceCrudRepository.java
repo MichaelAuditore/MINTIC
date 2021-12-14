@@ -16,6 +16,6 @@ public interface FraganceCrudRepository extends MongoRepository<Fragance, String
     @Query(" { price: ?0 } ")
     List<Fragance> getFragancesByPrice(double price);
 
-    @Query(" { description: { $regex: ?0 } } ")
+    @Query(" { description: { $regex: ?0, $options: 'i' } } ")
     List<Fragance> getFragancesByDescription(String word);
 }
