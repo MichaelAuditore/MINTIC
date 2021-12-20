@@ -1,6 +1,5 @@
 package com.miguelparada.retocuatro.web;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,7 +61,7 @@ public class OrderController {
 
     @GetMapping("date/{dateString}/{idSalesman}")
     public List<Order> getOrdersByRegisterDateAndSalesMan(
-            @PathVariable("dateString") Date date,
+            @PathVariable("dateString") String date,
             @PathVariable("idSalesman") int idSalesman) {
         return orderService.getOrdersByRegisterDateAndSalesMan(date, idSalesman);
     }

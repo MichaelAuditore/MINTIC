@@ -1,6 +1,5 @@
 package com.miguelparada.retocuatro.service;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,7 +38,7 @@ public class OrderService {
         return orderRepository.getOrdersByStateAndSalesMan(status, idSalesman);
     }
 
-    public List<Order> getOrdersByRegisterDateAndSalesMan(Date date, int idSalesman) {
+    public List<Order> getOrdersByRegisterDateAndSalesMan(String date, int idSalesman) {
         return orderRepository.getOrdersByRegisterDateAndSalesMan(date, idSalesman);
     }
 

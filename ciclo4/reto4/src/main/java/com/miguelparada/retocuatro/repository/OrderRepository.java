@@ -1,10 +1,14 @@
 package com.miguelparada.retocuatro.repository;
 
-import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.miguelparada.retocuatro.model.Order;
@@ -18,6 +22,9 @@ import com.miguelparada.retocuatro.repository.crud.OrderCrudRepository;
 public class OrderRepository {
     @Autowired
     private OrderCrudRepository orderCrudRepository;
+
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
     public int getLastOrderId() {
         int lastId = 0;
@@ -48,8 +55,19 @@ public class OrderRepository {
         return orderCrudRepository.getOrdersByStateAndSalesMan(status, idSalesman);
     }
 
-    public List<Order> getOrdersByRegisterDateAndSalesMan(Date date, int idSalesman) {
-        return orderCrudRepository.getOrdersByRegisterDateAndSalesMan(date, idSalesman);
+    public List<Order> getOrdersByRegisterDateAndSalesMan(String date, int idSalesman) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        Query query = new Query();
+        Criteria dateCriteria = Criteria.where("registerDay")
+                .gte(LocalDate.parse(date, formatter).minusDays(1).atStartOfDay())
+                .lt(LocalDate.parse(date, formatter).plusDays(2).atStartOfDay())
+                .and("salesMan.id").is(idSalesman);
+
+        query.addCriteria(dateCriteria);
+        List<Order> orders = mongoTemplate.find(query, Order.class);
+
+        return orders;
     }
 
     public Order create(Order order) {
